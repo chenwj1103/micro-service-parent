@@ -9,6 +9,14 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
+      # 多注册中心
+      defaultZone: http://127.0.0.1:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+
+# 心跳检测检测与续约时间，测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
+  instance:
+    # 每间隔1s，向服务端发送一次心跳，证明自己依然“存活”
+    lease-renewal-interval-in-seconds: 5
+    # 告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，请将我踢掉
+    lease-expiration-duration-in-seconds: 2

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: service-zuul
+
+
+server:
+  port: 8087
+
+
+eureka:
+  client:
+    service-url:
+      defalutZone: http://localhost:8761/eureka/
+
+
+# ## zuul.routes.<route>.path与zuul.routes.<route>.serviceId分别配置zuul拦截请求的路径，以及拦截之后路由到的指定的eureka服务
+  ### 这里除了能结合eureka服务，指定serviceId使用，还可以指定为一个url地址，比如zuul.routes.hello-service.path=http://localhost:8011
+zuul:
+  routes:
+    hello-service:
+      path: /hello-service/**
+      serviceId: hello-service
+    hello-service2:
+      path: /hello-service2/**
+      serviceId: hello-service2
+
