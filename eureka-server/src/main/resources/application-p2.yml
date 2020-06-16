@@ -18,4 +18,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka/,http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
-
+  # 自我保护机制的工作机制是如果在15分钟内超过85%的客户端节点都没有正常的心跳，那么Eureka就认为客户端与注册中心出现了网络故障 ，默认是true
+#  server:
+#    enable-self-preservation: true
+#    # 该配置可以修改检查失效服务的时间，每隔60s检查失效服务，并移除列表
+#    eviction-interval-timer-in-ms: 60

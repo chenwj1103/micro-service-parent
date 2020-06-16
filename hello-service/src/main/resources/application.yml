@@ -13,10 +13,15 @@ eureka:
       defaultZone: http://127.0.0.1:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+    healthcheck:
+      enabled: true
+    # client本地缓存清单更新间隔，默认30秒
+    registry-fetch-interval-seconds: 30
+    # 心跳检测检测与续约时间，测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
+    # client维持与server的心跳线程数
+    heartbeat-executor-thread-pool-size:instance: 2
+    # 每间隔30s，向服务端发送一次心跳，证明自己依然“存活”
+    lease-renewal-interval-in-seconds: 30
+    # 告诉服务端，如果我90s之内没有给你发心跳，就代表我“死”了，请将我踢掉
+    lease-expiration-duration-in-seconds: 90
 
-# 心跳检测检测与续约时间，测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
-  instance:
-    # 每间隔1s，向服务端发送一次心跳，证明自己依然“存活”
-    lease-renewal-interval-in-seconds: 5
-    # 告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，请将我踢掉
-    lease-expiration-duration-in-seconds: 2

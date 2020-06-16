@@ -4,6 +4,20 @@ server:
 spring:
   application:
     name: hello-consumer-ribbon
+  # 开启失败重试
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+
+restTemplate:
+  ribbon:
+    MaxAutoRetries: 3
+    # Interval to refresh the server list from the source
+    ServerListRefreshInterval: 2000
+    ConnectTimeout: 3000
+    ReadTimeout: 3000
+
 
 eureka:
   client:
