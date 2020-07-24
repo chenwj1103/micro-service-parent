@@ -10,7 +10,7 @@ eureka:
   client:
     service-url:
       # 多注册中心
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://192.168.0.101:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
     healthcheck:
