@@ -5,7 +5,9 @@ spring:
   application:
     name: eureka-server
   profiles: p1
-
+logging:
+  level:
+    com.chenwj: DEBUG
 ## eureka配置
 eureka:
   instance:
@@ -14,11 +16,11 @@ eureka:
   client:
     ## 在默认设置下，该服务注册中心也会将自己作为客户端来尝试注册它自己，所以我们需要禁用它的客户端注册行为
     ## 是否从eureka服务器获取注册信息，所以这里是false
-    register-with-eureka: true
+    register-with-eureka: false
     ## 是否注册自身到eureka服务器,因为当前这个应用就是eureka服务器，没必要注册自身，所以这里是false
-    fetch-registry: true
+    fetch-registry: false
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/,http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/ # ,http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
   # 自我保护机制的工作机制是如果在15分钟内超过85%的客户端节点都没有正常的心跳，那么Eureka就认为客户端与注册中心出现了网络故障 ，默认是true
   server:
     enable-self-preservation: true
